@@ -26,6 +26,5 @@ variable "aws_private_subnet-01" {
 variable "aws_private_subnet-02" {
   type        = string
   description = "CIDR block for the private subnet 02"
-  default     = "10.55.4.0./24"
-
+  default     = "10.55.4.0/24"
 }

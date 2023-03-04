@@ -1,3 +1,4 @@
+
 # Create a VPC 
 resource "aws_vpc" "main" {
   cidr_block       = var.aws_vpc_value
@@ -11,7 +12,6 @@ resource "aws_vpc" "main" {
 
 
 # Create multiple public subnet for the VPC 
-
 resource "aws_subnet" "public-subnet-01" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.aws_public_subnet-01
@@ -31,7 +31,6 @@ resource "aws_subnet" "public-subnet-02" {
 }
 
 # Create multiple private subnet for the VPC
-
 resource "aws_subnet" "private_subnet-01" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.aws_private_subnet-01
@@ -46,5 +45,32 @@ resource "aws_subnet" "private_subnet-02" {
   availability_zone = "ap-south-1b"
   tags = {
     Name = "private-subnet-02"
+  }
+}
+
+
+# Create the Internet Gateway for the VPC 
+
+resource "aws_internet_gateway" "vpc_igt" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "IGT"
+  }
+  
+}
+
+# Create the ElaticIP for the NGT
+ resource "aws_eip" "elastic_ip" {
+ vpc = true
+ }
+
+
+# Create the NAT Gateway for the VPC
+
+resource "aws_nat_gateway" "vpc-ngt" {
+  allocation_id = aws_eip.elastic_ip.id
+  subnet_id = aws_subnet.public-subnet-01.id
+  tags = {
+    "Name" = "NGT-VPC"
   }
 }
