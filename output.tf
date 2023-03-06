@@ -22,22 +22,22 @@ output "public-subnet_id-02" {
 
 output "internet_gateway_id" {
   description = "Internet Gateway ID: "
-  value = aws_internet_gateway.vpc_igt.id
+  value       = aws_internet_gateway.vpc_igt.id
 }
 
 output "public_route_table" {
   description = "Public Route Table: "
-  value = aws_route_table.public-route-table
+  value       = aws_route_table.public-route-table
 }
 
 output "private_route_table" {
-    description = "Private Route Table: "
-  value = aws_route_table.private-route-table
+  description = "Private Route Table: "
+  value       = aws_route_table.private-route-table
 }
 
 output "nat_gateway_id" {
-    description = "NAT Gateway ID: "
-  value = aws_nat_gateway.vpc_ngt.id
+  description = "NAT Gateway ID: "
+  value       = aws_nat_gateway.vpc_ngt.id
 }
 
 output "elastic_ip" {
